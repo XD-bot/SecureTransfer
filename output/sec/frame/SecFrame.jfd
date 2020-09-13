@@ -1,0 +1,58 @@
+JFDML JFormDesigner: "6.0.6.2.195" Java: "11.0.6" encoding: "UTF-8"
+
+new FormModel {
+	contentType: "form/swing"
+	root: new FormRoot {
+		add( new FormWindow( "javax.swing.JFrame", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+			"$horizontalGroup": "par l {seq t {space ::15:x, comp tabbedPane1:::p::p, space ::14:x}}"
+			"$verticalGroup": "par l {comp tabbedPane1::t:::x}"
+		} ) {
+			name: "this"
+			"defaultCloseOperation": 3
+			"title": "文件传输"
+			"font": new java.awt.Font( "幼圆", 0, 17 )
+			add( new FormContainer( "javax.swing.JTabbedPane", new FormLayoutManager( class javax.swing.JTabbedPane ) ) {
+				name: "tabbedPane1"
+				"font": new java.awt.Font( "Microsoft YaHei UI", 0, 17 )
+				"focusable": false
+				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+					"$horizontalGroup": "par l {space :0:539:x}"
+					"$verticalGroup": "par l {space :0:411:x}"
+				} ) {
+					name: "ServerPanel"
+				}, new FormLayoutConstraints( null ) {
+					"title": " 服务端"
+				} )
+				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+					"$horizontalGroup": "par l {seq l {space :p:14:p, comp IPlabel:::p::p, space :::p, comp IPtextField::::128:x, space s:::p, comp Portlabel:::p::p, space :::p, comp PorttextField:::p:73:p, space :p:212:p}}"
+					"$verticalGroup": "par l {seq l {space :p:20:p, par b {comp IPlabel::b:p:39:p, comp IPtextField::b:::x, comp Portlabel::b:p::p, comp PorttextField::b:p::p}, space ::352:x}}"
+				} ) {
+					name: "ClientPanel"
+					add( new FormComponent( "javax.swing.JLabel" ) {
+						name: "IPlabel"
+						"text": "IP地址："
+						"font": new com.jformdesigner.model.SwingDerivedFont( "微软雅黑", 196608, 3, false )
+					} )
+					add( new FormComponent( "javax.swing.JTextField" ) {
+						name: "IPtextField"
+						"font": new java.awt.Font( "Microsoft YaHei UI", 0, 15 )
+					} )
+					add( new FormComponent( "javax.swing.JLabel" ) {
+						name: "Portlabel"
+						"text": "端口："
+						"font": new com.jformdesigner.model.SwingDerivedFont( "微软雅黑", 196608, 3, false )
+					} )
+					add( new FormComponent( "javax.swing.JTextField" ) {
+						name: "PorttextField"
+						"font": new java.awt.Font( "幼圆", 0, 15 )
+					} )
+				}, new FormLayoutConstraints( null ) {
+					"title": "客户端"
+				} )
+			} )
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 0, 0 )
+			"size": new java.awt.Dimension( 570, 475 )
+		} )
+	}
+}

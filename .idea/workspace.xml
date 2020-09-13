@@ -1,11 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="38c2d41a-6c28-4384-a2d5-5c0914c279c0" name="Default Changelist" comment="" />
+    <list default="true" id="38c2d41a-6c28-4384-a2d5-5c0914c279c0" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test/testFrame.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test/testFrame.jfd" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/SecureTransfer-master.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/SecureTransfer-master.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="FxmlFile" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectId" id="1hPyzkzZJ0Uh9cnzKS7AnsAoES5" />
   <component name="ProjectViewState">
@@ -14,12 +34,65 @@
   </component>
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="UI_DESIGNER_EDITOR_MODE.PaletteManager.WIDTH" value="315" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="project.structure.last.edited" value="Facets" />
-    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.291954" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+  </component>
+  <component name="RunManager" selected="Application.SecFrame">
+    <configuration name="MainFrame" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="sec.frame.MainFrame" />
+      <module name="SecureTransfer-master" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="sec.frame.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="SecFrame" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="sec.frame.SecFrame" />
+      <module name="SecureTransfer-master" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="sec.frame.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="test" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="test" />
+      <module name="SecureTransfer-master" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="testFrame" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="testFrame" />
+      <module name="SecureTransfer-master" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.SecFrame" />
+        <item itemvalue="Application.testFrame" />
+        <item itemvalue="Application.MainFrame" />
+        <item itemvalue="Application.test" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -32,6 +105,8 @@
       <option name="presentableId" value="Default" />
       <updated>1599927286648</updated>
       <workItem from="1599927291462" duration="39000" />
+      <workItem from="1599928178211" duration="8707000" />
+      <workItem from="1600007817774" duration="4842000" />
     </task>
     <servers />
   </component>
@@ -39,9 +114,49 @@
     <option name="version" value="1" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="249" y="0" key="SettingsEditor" timestamp="1599927340773">
+    <state x="270" y="71" width="905" height="682" key="#Project_Structure" timestamp="1599986857597">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="249" y="0" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1599927340773" />
+    <state x="270" y="71" width="905" height="682" key="#Project_Structure/0.0.1536.824@0.0.1536.824" timestamp="1599986857597" />
+    <state x="223" y="67" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1599986936014">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="223" y="67" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1536.824@0.0.1536.824" timestamp="1599986936014" />
+    <state x="503" y="167" key="FileChooserDialogImpl" timestamp="1600007737992">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="503" y="167" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1600007737992" />
+    <state width="1493" height="210" key="GridCell.Tab.0.bottom" timestamp="1600015061953">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="210" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1600015061953" />
+    <state width="1493" height="210" key="GridCell.Tab.0.center" timestamp="1600015061953">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="210" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1600015061953" />
+    <state width="1493" height="210" key="GridCell.Tab.0.left" timestamp="1600015061953">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="210" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1600015061953" />
+    <state width="1493" height="210" key="GridCell.Tab.0.right" timestamp="1600015061953">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="210" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1600015061953" />
+    <state x="249" y="0" key="SettingsEditor" timestamp="1600014993717">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="249" y="0" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1600014993717" />
+    <state x="537" y="293" key="com.intellij.uiDesigner.propertyInspector.editors.string.StringEditorDialog" timestamp="1600006680332">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="537" y="293" key="com.intellij.uiDesigner.propertyInspector.editors.string.StringEditorDialog/0.0.1536.824@0.0.1536.824" timestamp="1600006680332" />
+    <state x="178" y="22" key="new project wizard" timestamp="1599985377971">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="178" y="22" key="new project wizard/0.0.1536.824@0.0.1536.824" timestamp="1599985377971" />
+    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup" timestamp="1600014358003">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup/0.0.1536.824@0.0.1536.824" timestamp="1600014358003" />
   </component>
 </project>
