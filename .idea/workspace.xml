@@ -2,19 +2,33 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="38c2d41a-6c28-4384-a2d5-5c0914c279c0" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test/testFrame.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test/testFrame.jfd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/SecureTransfer-master.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/SecureTransfer-master.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/META-INF/SecureTransfer-master.kotlin_module" beforeDir="false" afterPath="$PROJECT_DIR$/output/META-INF/SecureTransfer-master.kotlin_module" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/com/intellij/uiDesigner/core/AbstractLayout.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/com/intellij/uiDesigner/core/DimensionInfo.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/com/intellij/uiDesigner/core/GridConstraints.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/com/intellij/uiDesigner/core/GridLayoutManager.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/com/intellij/uiDesigner/core/HorizontalInfo.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/com/intellij/uiDesigner/core/LayoutState.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/com/intellij/uiDesigner/core/Spacer.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/com/intellij/uiDesigner/core/SupportCode$TextWithMnemonic.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/com/intellij/uiDesigner/core/SupportCode.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/com/intellij/uiDesigner/core/Util.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/com/intellij/uiDesigner/core/VerticalInfo.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/sec/frame/SecFrame.class" beforeDir="false" afterPath="$PROJECT_DIR$/output/sec/frame/SecFrame.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/sec/frame/SecFrame.jfd" beforeDir="false" afterPath="$PROJECT_DIR$/output/sec/frame/SecFrame.jfd" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sec/frame/SecFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sec/frame/SecFrame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sec/frame/SecFrame.jfd" beforeDir="false" afterPath="$PROJECT_DIR$/src/sec/frame/SecFrame.jfd" afterDir="false" />
     </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FavoritesManager">
+    <favorites_list name="SecureTransfer" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -28,6 +42,9 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectId" id="1hPyzkzZJ0Uh9cnzKS7AnsAoES5" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="showExcludedFiles" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -44,13 +61,38 @@
     <property name="project.structure.side.proportion" value="0.291954" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
-  <component name="RunManager" selected="Application.SecFrame">
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager" selected="Application.StartFrame">
     <configuration name="MainFrame" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="sec.frame.MainFrame" />
       <module name="SecureTransfer-master" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="sec.frame.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="RsaClass" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="sec.crypto.RsaClass" />
+      <module name="SecureTransfer-master" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="sec.crypto.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -71,9 +113,15 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="test" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="test" />
+    <configuration name="StartFrame" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="sec.frame.StartFrame" />
       <module name="SecureTransfer-master" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="sec.frame.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -87,10 +135,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.StartFrame" />
         <item itemvalue="Application.SecFrame" />
+        <item itemvalue="Application.RsaClass" />
         <item itemvalue="Application.testFrame" />
         <item itemvalue="Application.MainFrame" />
-        <item itemvalue="Application.test" />
       </list>
     </recent_temporary>
   </component>
@@ -107,11 +156,23 @@
       <workItem from="1599927291462" duration="39000" />
       <workItem from="1599928178211" duration="8707000" />
       <workItem from="1600007817774" duration="4842000" />
+      <workItem from="1600049781861" duration="14120000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="WindowStateProjectService">
     <state x="270" y="71" width="905" height="682" key="#Project_Structure" timestamp="1599986857597">
