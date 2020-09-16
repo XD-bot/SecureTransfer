@@ -21,11 +21,14 @@ public class StartFrame extends JFrame {
         // TODO add your code here
         new ServerFrame().setVisible(true);
 
+        //this.dispose();
     }
 
     private void ClientButtonActionPerformed(ActionEvent e) {
         // TODO add your code here
         new ClientFrame().setVisible(true);
+        this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        this.dispose();
     }
 
     private void initComponents() {

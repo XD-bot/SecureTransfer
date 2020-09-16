@@ -2,26 +2,19 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="38c2d41a-6c28-4384-a2d5-5c0914c279c0" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/output/META-INF/SecureTransfer-master.kotlin_module" beforeDir="false" afterPath="$PROJECT_DIR$/output/META-INF/SecureTransfer-master.kotlin_module" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/output/com/intellij/uiDesigner/core/AbstractLayout.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/output/com/intellij/uiDesigner/core/DimensionInfo.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/output/com/intellij/uiDesigner/core/GridConstraints.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/output/com/intellij/uiDesigner/core/GridLayoutManager.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/output/com/intellij/uiDesigner/core/HorizontalInfo.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/output/com/intellij/uiDesigner/core/LayoutState.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/output/com/intellij/uiDesigner/core/Spacer.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/output/com/intellij/uiDesigner/core/SupportCode$TextWithMnemonic.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/output/com/intellij/uiDesigner/core/SupportCode.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/output/com/intellij/uiDesigner/core/Util.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/output/com/intellij/uiDesigner/core/VerticalInfo.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/output/sec/frame/SecFrame.class" beforeDir="false" afterPath="$PROJECT_DIR$/output/sec/frame/SecFrame.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/output/sec/frame/SecFrame.jfd" beforeDir="false" afterPath="$PROJECT_DIR$/output/sec/frame/SecFrame.jfd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sec/frame/SecFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sec/frame/SecFrame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sec/frame/SecFrame.jfd" beforeDir="false" afterPath="$PROJECT_DIR$/src/sec/frame/SecFrame.jfd" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/sec/frame/SecFrame.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/sec/frame/SecFrame.jfd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/sec/frame/StartFrame.class" beforeDir="false" afterPath="$PROJECT_DIR$/output/sec/frame/StartFrame.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sec/frame/ClientFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sec/frame/ClientFrame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sec/frame/ClientFrame.jfd" beforeDir="false" afterPath="$PROJECT_DIR$/src/sec/frame/ClientFrame.jfd" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sec/frame/SecFrame.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sec/frame/SecFrame.jfd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sec/frame/ServerFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sec/frame/ServerFrame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sec/frame/ServerFrame.jfd" beforeDir="false" afterPath="$PROJECT_DIR$/src/sec/frame/ServerFrame.jfd" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sec/frame/StartFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sec/frame/StartFrame.java" afterDir="false" />
     </list>
-    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -61,47 +54,9 @@
     <property name="project.structure.side.proportion" value="0.291954" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
-  <component name="RunDashboard">
-    <option name="ruleStates">
-      <list>
-        <RuleState>
-          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
-        </RuleState>
-        <RuleState>
-          <option name="name" value="StatusDashboardGroupingRule" />
-        </RuleState>
-      </list>
-    </option>
-  </component>
-  <component name="RunManager" selected="Application.StartFrame">
-    <configuration name="MainFrame" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="sec.frame.MainFrame" />
-      <module name="SecureTransfer-master" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="sec.frame.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="RsaClass" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="sec.crypto.RsaClass" />
-      <module name="SecureTransfer-master" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="sec.crypto.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="SecFrame" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="sec.frame.SecFrame" />
+  <component name="RunManager" selected="Application.testClientSocket">
+    <configuration name="ServerFrame" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="sec.frame.ServerFrame" />
       <module name="SecureTransfer-master" />
       <extension name="coverage">
         <pattern>
@@ -126,6 +81,13 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="testClientSocket" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="testClientSocket" />
+      <module name="SecureTransfer-master" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="testFrame" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="testFrame" />
       <module name="SecureTransfer-master" />
@@ -133,13 +95,20 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="testServerSocket" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="testServerSocket" />
+      <module name="SecureTransfer-master" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.StartFrame" />
-        <item itemvalue="Application.SecFrame" />
-        <item itemvalue="Application.RsaClass" />
+        <item itemvalue="Application.testClientSocket" />
+        <item itemvalue="Application.testServerSocket" />
+        <item itemvalue="Application.ServerFrame" />
         <item itemvalue="Application.testFrame" />
-        <item itemvalue="Application.MainFrame" />
+        <item itemvalue="Application.StartFrame" />
       </list>
     </recent_temporary>
   </component>
@@ -157,6 +126,7 @@
       <workItem from="1599928178211" duration="8707000" />
       <workItem from="1600007817774" duration="4842000" />
       <workItem from="1600049781861" duration="14120000" />
+      <workItem from="1600101153115" duration="10165000" />
     </task>
     <servers />
   </component>
@@ -168,7 +138,9 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
           </value>
         </entry>
       </map>
@@ -183,26 +155,46 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="223" y="67" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1536.824@0.0.1536.824" timestamp="1599986936014" />
+    <state x="574" y="122" key="#com.intellij.ide.util.MemberChooser" timestamp="1600256800390">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="574" y="122" key="#com.intellij.ide.util.MemberChooser/0.0.1536.824@0.0.1536.824" timestamp="1600256800390" />
     <state x="503" y="167" key="FileChooserDialogImpl" timestamp="1600007737992">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="503" y="167" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1600007737992" />
-    <state width="1493" height="210" key="GridCell.Tab.0.bottom" timestamp="1600015061953">
+    <state width="1493" height="210" key="GridCell.Tab.0.bottom" timestamp="1600273327833">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="210" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1600015061953" />
-    <state width="1493" height="210" key="GridCell.Tab.0.center" timestamp="1600015061953">
+    <state width="1493" height="210" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1600273327833" />
+    <state width="1493" height="210" key="GridCell.Tab.0.center" timestamp="1600273327833">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="210" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1600015061953" />
-    <state width="1493" height="210" key="GridCell.Tab.0.left" timestamp="1600015061953">
+    <state width="1493" height="210" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1600273327833" />
+    <state width="1493" height="210" key="GridCell.Tab.0.left" timestamp="1600273327833">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="210" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1600015061953" />
-    <state width="1493" height="210" key="GridCell.Tab.0.right" timestamp="1600015061953">
+    <state width="1493" height="210" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1600273327833" />
+    <state width="1493" height="210" key="GridCell.Tab.0.right" timestamp="1600273327833">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="210" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1600015061953" />
+    <state width="1493" height="210" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1600273327833" />
+    <state width="1493" height="261" key="GridCell.Tab.1.bottom" timestamp="1600261947048">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="261" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1600261947048" />
+    <state width="1493" height="261" key="GridCell.Tab.1.center" timestamp="1600261947048">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="261" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1600261947048" />
+    <state width="1493" height="261" key="GridCell.Tab.1.left" timestamp="1600261947048">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="261" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1600261947048" />
+    <state width="1493" height="261" key="GridCell.Tab.1.right" timestamp="1600261947048">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="261" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1600261947048" />
     <state x="249" y="0" key="SettingsEditor" timestamp="1600014993717">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -219,5 +211,19 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="431" y="145" width="672" height="678" key="search.everywhere.popup/0.0.1536.824@0.0.1536.824" timestamp="1600014358003" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/test/testServerSocket.java</url>
+          <line>7</line>
+          <properties class="testServerSocket" method="main">
+            <option name="EMULATED" value="true" />
+          </properties>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

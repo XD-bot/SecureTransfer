@@ -6,6 +6,10 @@ package sec.frame;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.net.Socket;
 import javax.swing.*;
 import javax.swing.GroupLayout;
 
@@ -23,6 +27,17 @@ public class ClientFrame extends JFrame {
 
     private void ConnectButtonActionPerformed(ActionEvent e) {
         // TODO add your code here
+        String serverIp = IPtextField.getText();
+        String serverPort = PorttextField.getText();
+        Socket socket = null;
+        try {
+             socket = new Socket(serverIp,Integer.parseInt(serverPort));
+            InputStream inputStream = socket.getInputStream();
+            OutputStream outputStream = socket.getOutputStream();
+
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
     }
 
     private void initComponents() {
@@ -63,7 +78,10 @@ public class ClientFrame extends JFrame {
             ConnectButton.setFont(ConnectButton.getFont().deriveFont(ConnectButton.getFont().getSize() + 3f));
             ConnectButton.setBorder(UIManager.getBorder("Button.border"));
             ConnectButton.setContentAreaFilled(false);
-            ConnectButton.addActionListener(e -> ConnectButtonActionPerformed(e));
+            ConnectButton.addActionListener(e -> {
+			ConnectButtonActionPerformed(e);
+			ConnectButtonActionPerformed(e);
+		});
 
             //---- GenerateButton ----
             GenerateButton.setText("\u751f\u6210");
@@ -90,7 +108,7 @@ public class ClientFrame extends JFrame {
                                 .addComponent(Portlabel)
                                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(PorttextField, GroupLayout.PREFERRED_SIZE, 73, GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 120, Short.MAX_VALUE)
+                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 122, Short.MAX_VALUE)
                                 .addComponent(ConnectButton, GroupLayout.PREFERRED_SIZE, 87, GroupLayout.PREFERRED_SIZE)))
                         .addGap(28, 28, 28))
             );
