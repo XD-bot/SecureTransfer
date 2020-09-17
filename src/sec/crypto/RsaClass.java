@@ -8,7 +8,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class RsaClass {
-    public Map<Integer, Key> keyMap = new HashMap<>();
 
 //    public static void main(String[] args) throws NoSuchAlgorithmException, IllegalBlockSizeException, InvalidKeyException, BadPaddingException, NoSuchPaddingException {
 //        RsaClass rsaClass = new RsaClass();
@@ -27,7 +26,8 @@ public class RsaClass {
     /**
      * 生成密钥对
      */
-    public void generateKeyPair() throws NoSuchAlgorithmException {
+    public Map generateKeyPair() throws NoSuchAlgorithmException {
+        Map<Integer,Key> keyMap = new HashMap<>();
         KeyPairGenerator keyPairGenerator = KeyPairGenerator.getInstance("RSA");
         keyPairGenerator.initialize(1024,new SecureRandom());
         KeyPair keyPair = keyPairGenerator.generateKeyPair();
@@ -37,11 +37,10 @@ public class RsaClass {
         //转化为字符串
         String publicKeyString = new String(publicKey.toString());
         String privateKeyString = new String(privateKey.toString());
-        System.out.println("RSA私钥："+privateKeyString);
-        System.out.println("RSA公钥："+publicKeyString);
         //以键值对存储，0为公钥，1为私钥
         keyMap.put(0,publicKey);
         keyMap.put(1,privateKey);
+        return keyMap;
     }
 
     /**

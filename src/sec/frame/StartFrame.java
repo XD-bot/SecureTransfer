@@ -21,7 +21,6 @@ public class StartFrame extends JFrame {
         // TODO add your code here
         new ServerFrame().setVisible(true);
 
-        //this.dispose();
     }
 
     private void ClientButtonActionPerformed(ActionEvent e) {
@@ -39,8 +38,7 @@ public class StartFrame extends JFrame {
 
         //======== this ========
         Container contentPane = getContentPane();
-        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        setTitle("开始");
+
         //---- ServerButton ----
         ServerButton.setText("\u670d\u52a1\u7aef\uff08\u53d1\u9001\u6587\u4ef6\uff09");
         ServerButton.setContentAreaFilled(false);

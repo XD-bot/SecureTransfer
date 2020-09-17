@@ -1,83 +1,90 @@
 package sec.socket;
 
+import sec.crypto.RsaClass;
+
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.security.Key;
+import java.security.KeyPair;
+import java.security.NoSuchAlgorithmException;
+import java.util.Map;
+import java.util.Random;
 
-public class Server implements Runnable{
+public class Server {
+    String clientAddress;
+    Integer clientPort;
+    private Integer port;
+    ServerSocket serverSocket = null;
+    Socket socket = null;
+    RsaClass rsaClass = null;
+    Map<Integer, Key> keyPair = null;
 
-    Integer port ;
-    String ipAddress;
-    String filePath;
-    ServerSocket ss;
-    Socket socket;
-
-    public Server(){
-
-    }
-    public Server(Integer port, String ipAddress, String filePath, ServerSocket ss, Socket socket) {
+    private void generatePort(){
+        Random random = new Random();
+        //端口范围：1024~63334
+        Integer port = random.nextInt(64510)+1024;
         this.port = port;
-        this.ipAddress = ipAddress;
-        this.filePath = filePath;
-        this.ss = ss;
-        this.socket = socket;
     }
-    public void startServer(){
-
+    public void listen(){
+        generatePort();
         try {
-            this.setPort(8888);
-            if(port > 1023 && port < 63336 ){
-                ss = new ServerSocket(port);
-                System.out.println("启动服务器。。。");
-            }
+            serverSocket = new ServerSocket(this.port);
+            //开启监听线程
+            new Thread(new listenThread(serverSocket)).start();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
+    /**
+     * 生成RSA密钥对
+     */
+    public void generateRsa(){
+        rsaClass = new RsaClass();
+        try {
+            keyPair = rsaClass.generateKeyPair();
+            System.out.println(keyPair.get(1));
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        }
+
+    }
+    public void send(String filePath){
+
+    }
+    public Integer getPort(){
+        return this.port;
+    }
+
+}
+
+
+//监听线程
+class listenThread implements Runnable{
+    private ServerSocket serverSocket ;
+    private Socket socket;
+    public listenThread(ServerSocket serverSocket) {
+        this.serverSocket = serverSocket;
+    }
+
+    @Override
+    public void run() {
+        try {
+            System.out.println("-----开始监听"+serverSocket.getLocalPort()+"端口----");
+            socket = serverSocket.accept();
+            System.out.println("----与"+socket.getInetAddress()+":"+socket.getPort()+"建立连接----");
 
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
-    public Integer getPort() {
-        return port;
-    }
-
-    public void setPort(Integer port) {
-        this.port = port;
-    }
-
-    public String getIpAddress() {
-        return ipAddress;
-    }
-
-    public void setIpAddress(String ipAddress) {
-        this.ipAddress = ipAddress;
-    }
-
-    public String getFilePath() {
-        return filePath;
-    }
-
-    public void setFilePath(String filePath) {
-        this.filePath = filePath;
-    }
-
-    public ServerSocket getSs() {
-        return ss;
-    }
-
-    public void setSs(ServerSocket ss) {
-        this.ss = ss;
-    }
-
-    public Socket getSocket() {
-        return socket;
-    }
-
-    public void setSocket(Socket socket) {
-        this.socket = socket;
-    }
+}
+//发送文件线程
+class sendThread implements Runnable{
 
     @Override
     public void run() {
-            startServer();
+
     }
 }

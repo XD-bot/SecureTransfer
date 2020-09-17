@@ -4,17 +4,20 @@
     <list default="true" id="38c2d41a-6c28-4384-a2d5-5c0914c279c0" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/output/META-INF/SecureTransfer-master.kotlin_module" beforeDir="false" afterPath="$PROJECT_DIR$/output/META-INF/SecureTransfer-master.kotlin_module" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/output/sec/frame/SecFrame.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/output/sec/frame/SecFrame.jfd" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/output/sec/frame/StartFrame.class" beforeDir="false" afterPath="$PROJECT_DIR$/output/sec/frame/StartFrame.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sec/crypto/RsaClass.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sec/crypto/RsaClass.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/sec/frame/ClientFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sec/frame/ClientFrame.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/sec/frame/ClientFrame.jfd" beforeDir="false" afterPath="$PROJECT_DIR$/src/sec/frame/ClientFrame.jfd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sec/frame/SecFrame.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sec/frame/SecFrame.jfd" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/sec/frame/ServerFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sec/frame/ServerFrame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sec/frame/ServerFrame.jfd" beforeDir="false" afterPath="$PROJECT_DIR$/src/sec/frame/ServerFrame.jfd" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/sec/frame/StartFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sec/frame/StartFrame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sec/socket/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sec/socket/Client.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sec/socket/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sec/socket/Server.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/testClientSocket.class" beforeDir="false" afterPath="$PROJECT_DIR$/test/testClientSocket.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/testClientSocket.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/testClientSocket.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/testServerSocket.class" beforeDir="false" afterPath="$PROJECT_DIR$/test/testServerSocket.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/testServerSocket.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/testServerSocket.java" afterDir="false" />
     </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -53,6 +56,18 @@
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.291954" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
   </component>
   <component name="RunManager" selected="Application.testClientSocket">
     <configuration name="ServerFrame" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
@@ -105,8 +120,8 @@
     <recent_temporary>
       <list>
         <item itemvalue="Application.testClientSocket" />
-        <item itemvalue="Application.testServerSocket" />
         <item itemvalue="Application.ServerFrame" />
+        <item itemvalue="Application.testServerSocket" />
         <item itemvalue="Application.testFrame" />
         <item itemvalue="Application.StartFrame" />
       </list>
@@ -127,6 +142,7 @@
       <workItem from="1600007817774" duration="4842000" />
       <workItem from="1600049781861" duration="14120000" />
       <workItem from="1600101153115" duration="10165000" />
+      <workItem from="1600300828019" duration="5904000" />
     </task>
     <servers />
   </component>
@@ -211,19 +227,5 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="431" y="145" width="672" height="678" key="search.everywhere.popup/0.0.1536.824@0.0.1536.824" timestamp="1600014358003" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-method">
-          <url>file://$PROJECT_DIR$/test/testServerSocket.java</url>
-          <line>7</line>
-          <properties class="testServerSocket" method="main">
-            <option name="EMULATED" value="true" />
-          </properties>
-          <option name="timeStamp" value="2" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>

@@ -4,6 +4,8 @@
 
 package sec.frame;
 
+import sec.socket.Server;
+
 import java.awt.*;
 import java.awt.event.*;
 import java.io.File;
@@ -55,46 +57,11 @@ public class ServerFrame extends JFrame {
 
     private void StartButtonActionPerformed(ActionEvent e) {
         // TODO add your code here
-        Random random = new Random();
-        //端口范围：1024~63335
-        Integer port = random.nextInt(64511)+1024;
-        try {
-            InetAddress address = InetAddress.getLocalHost();
-            System.out.println("本机IP地址:"+address.getHostAddress());
-            //端口没有被占用
-
-                serverSocket = new ServerSocket(port);
-                System.out.println("正在监听"+port+"端口");
-             //   ServerTextArea.setText("正在监听"+port+"端口");
-
-
-              //  System.out.println("开启失败：端口被占用");
-
-            Socket socket= serverSocket.accept();
-            System.out.println("线程阻塞了");
-            socket.getInputStream();
-        } catch (IOException ex) {
-            ex.printStackTrace();
-        }
+        server.listen();
+        ServerTextArea.append("----开始监听端口"+server.getPort()+"----\n");
     }
 
-    /**
-     * @description 判断端口是否被占用
-     * @param port
-     * @return flag
-     */
-//    private static boolean portAvailable(Integer port){
-//
-//        try {
-//            ServerSocket socket = new ServerSocket(port);
-//           // socket.close();
-//            return true;
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//            return false;
-//        }
-//
-//    }
+
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
         panel1 = new JPanel();
@@ -105,7 +72,7 @@ public class ServerFrame extends JFrame {
         SendButton = new JButton();
         DisconntButton = new JButton();
         StartButton = new JButton();
-
+        server = new Server();
         //======== this ========
         setTitle("\u670d\u52a1\u7aef");
         setFont(new Font("\u4eff\u5b8b", Font.PLAIN, 12));
@@ -211,6 +178,7 @@ public class ServerFrame extends JFrame {
         setLocationRelativeTo(getOwner());
         // JFormDesigner - End of component initialization  //GEN-END:initComponents
     }
+
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables
     private JPanel panel1;
     private JLabel Filelabel;
@@ -220,6 +188,6 @@ public class ServerFrame extends JFrame {
     private JButton SendButton;
     private JButton DisconntButton;
     private JButton StartButton;
-    private ServerSocket serverSocket;
+    private Server server;
     // JFormDesigner - End of variables declaration  //GEN-END:variables
 }

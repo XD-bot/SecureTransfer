@@ -31,13 +31,18 @@ public class ClientFrame extends JFrame {
         String serverPort = PorttextField.getText();
         Socket socket = null;
         try {
-             socket = new Socket(serverIp,Integer.parseInt(serverPort));
+            socket = new Socket(serverIp, Integer.parseInt(serverPort));
             InputStream inputStream = socket.getInputStream();
             OutputStream outputStream = socket.getOutputStream();
 
         } catch (IOException ex) {
             ex.printStackTrace();
         }
+    }
+
+    private void GenerateButtonActionPerformed(ActionEvent e) {
+        // TODO add your code here
+
     }
 
     private void initComponents() {
@@ -80,7 +85,6 @@ public class ClientFrame extends JFrame {
             ConnectButton.setContentAreaFilled(false);
             ConnectButton.addActionListener(e -> {
 			ConnectButtonActionPerformed(e);
-			ConnectButtonActionPerformed(e);
 		});
 
             //---- GenerateButton ----
@@ -88,6 +92,7 @@ public class ClientFrame extends JFrame {
             GenerateButton.setFont(GenerateButton.getFont().deriveFont(GenerateButton.getFont().getSize() + 3f));
             GenerateButton.setBorder(UIManager.getBorder("Button.border"));
             GenerateButton.setContentAreaFilled(false);
+            GenerateButton.addActionListener(e -> GenerateButtonActionPerformed(e));
 
             GroupLayout panel1Layout = new GroupLayout(panel1);
             panel1.setLayout(panel1Layout);
@@ -108,7 +113,7 @@ public class ClientFrame extends JFrame {
                                 .addComponent(Portlabel)
                                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(PorttextField, GroupLayout.PREFERRED_SIZE, 73, GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 122, Short.MAX_VALUE)
+                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 120, Short.MAX_VALUE)
                                 .addComponent(ConnectButton, GroupLayout.PREFERRED_SIZE, 87, GroupLayout.PREFERRED_SIZE)))
                         .addGap(28, 28, 28))
             );
