@@ -53,12 +53,29 @@ public class ServerFrame extends JFrame {
 
     private void DisconntButtonActionPerformed(ActionEvent e) {
         // TODO add your code here
+        try {
+            serverSocket.closeSocket();
+            ServerTextArea.append("连接已关闭\n");
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
     }
 
     private void StartButtonActionPerformed(ActionEvent e) {
         // TODO add your code here
-        server.listen();
-        ServerTextArea.append("----开始监听端口"+server.getPort()+"----\n");
+        Integer port = Integer.parseInt(PorttextField.getText());
+        if (port < 1024 || port > 65535){
+            JOptionPane.showMessageDialog(this,"端口范围:1024 ~ 65535","错误",JOptionPane.ERROR_MESSAGE);
+        }
+        else {
+            serverSocket.setPort(port);
+            serverSocket.setTextArea(this.ServerTextArea);
+            Thread thread = new Thread(serverSocket);
+            ServerTextArea.append("----开始监听端口" + serverSocket.getPort() + "----\n");
+            thread.start();
+
+
+        }
     }
 
 
@@ -72,7 +89,9 @@ public class ServerFrame extends JFrame {
         SendButton = new JButton();
         DisconntButton = new JButton();
         StartButton = new JButton();
-        server = new Server();
+        Filelabel2 = new JLabel();
+        PorttextField = new JTextField();
+        serverSocket = new Server();
         //======== this ========
         setTitle("\u670d\u52a1\u7aef");
         setFont(new Font("\u4eff\u5b8b", Font.PLAIN, 12));
@@ -121,6 +140,13 @@ public class ServerFrame extends JFrame {
 			StartButtonActionPerformed(e);
 		});
 
+            //---- Filelabel2 ----
+            Filelabel2.setText("\u7aef\u53e3\uff1a");
+            Filelabel2.setFont(new Font("\u5fae\u8f6f\u96c5\u9ed1", Font.PLAIN, Filelabel2.getFont().getSize() + 3));
+
+            //---- PorttextField ----
+            PorttextField.setFont(PorttextField.getFont().deriveFont(PorttextField.getFont().getSize() + 3f));
+
             GroupLayout panel1Layout = new GroupLayout(panel1);
             panel1.setLayout(panel1Layout);
             panel1Layout.setHorizontalGroup(
@@ -129,17 +155,24 @@ public class ServerFrame extends JFrame {
                         .addGap(24, 24, 24)
                         .addGroup(panel1Layout.createParallelGroup()
                             .addGroup(panel1Layout.createSequentialGroup()
-                                .addComponent(Filelabel)
-                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(PathtextField, GroupLayout.PREFERRED_SIZE, 327, GroupLayout.PREFERRED_SIZE))
-                            .addComponent(ServerTextArea))
-                        .addGap(18, 18, 18)
-                        .addGroup(panel1Layout.createParallelGroup()
-                            .addComponent(FileButton, GroupLayout.PREFERRED_SIZE, 92, GroupLayout.PREFERRED_SIZE)
-                            .addComponent(StartButton, GroupLayout.PREFERRED_SIZE, 92, GroupLayout.PREFERRED_SIZE)
-                            .addComponent(SendButton, GroupLayout.PREFERRED_SIZE, 92, GroupLayout.PREFERRED_SIZE)
+                                .addGroup(panel1Layout.createParallelGroup()
+                                    .addGroup(GroupLayout.Alignment.TRAILING, panel1Layout.createSequentialGroup()
+                                        .addComponent(Filelabel)
+                                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED))
+                                    .addGroup(GroupLayout.Alignment.TRAILING, panel1Layout.createSequentialGroup()
+                                        .addComponent(Filelabel2)
+                                        .addGap(35, 35, 35)))
+                                .addGroup(panel1Layout.createParallelGroup()
+                                    .addComponent(PorttextField, GroupLayout.PREFERRED_SIZE, 99, GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(PathtextField, GroupLayout.PREFERRED_SIZE, 327, GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(ServerTextArea, GroupLayout.PREFERRED_SIZE, 405, GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(panel1Layout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
+                            .addComponent(FileButton, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(StartButton, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(SendButton, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(DisconntButton, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addContainerGap(24, Short.MAX_VALUE))
+                        .addContainerGap(18, Short.MAX_VALUE))
             );
             panel1Layout.setVerticalGroup(
                 panel1Layout.createParallelGroup()
@@ -150,15 +183,18 @@ public class ServerFrame extends JFrame {
                             .addComponent(PathtextField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                             .addComponent(FileButton))
                         .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(panel1Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                            .addComponent(StartButton)
+                            .addComponent(Filelabel2, GroupLayout.PREFERRED_SIZE, 39, GroupLayout.PREFERRED_SIZE)
+                            .addComponent(PorttextField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
                         .addGroup(panel1Layout.createParallelGroup()
                             .addGroup(panel1Layout.createSequentialGroup()
-                                .addComponent(StartButton)
-                                .addGap(18, 18, 18)
                                 .addComponent(SendButton, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(DisconntButton))
-                            .addComponent(ServerTextArea, GroupLayout.PREFERRED_SIZE, 240, GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(74, Short.MAX_VALUE))
+                            .addComponent(ServerTextArea, GroupLayout.PREFERRED_SIZE, 204, GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap(62, Short.MAX_VALUE))
             );
         }
 
@@ -166,13 +202,17 @@ public class ServerFrame extends JFrame {
         contentPane.setLayout(contentPaneLayout);
         contentPaneLayout.setHorizontalGroup(
             contentPaneLayout.createParallelGroup()
-                .addComponent(panel1, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(contentPaneLayout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(panel1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(17, Short.MAX_VALUE))
         );
         contentPaneLayout.setVerticalGroup(
             contentPaneLayout.createParallelGroup()
                 .addGroup(contentPaneLayout.createSequentialGroup()
+                    .addContainerGap()
                     .addComponent(panel1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE))
+                    .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         pack();
         setLocationRelativeTo(getOwner());
@@ -188,6 +228,8 @@ public class ServerFrame extends JFrame {
     private JButton SendButton;
     private JButton DisconntButton;
     private JButton StartButton;
-    private Server server;
+    private JLabel Filelabel2;
+    private JTextField PorttextField;
+    private Server serverSocket;
     // JFormDesigner - End of variables declaration  //GEN-END:variables
 }

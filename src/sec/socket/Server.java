@@ -2,6 +2,7 @@ package sec.socket;
 
 import sec.crypto.RsaClass;
 
+import javax.swing.*;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
@@ -11,7 +12,7 @@ import java.security.NoSuchAlgorithmException;
 import java.util.Map;
 import java.util.Random;
 
-public class Server {
+public class Server implements Runnable{
     String clientAddress;
     Integer clientPort;
     private Integer port;
@@ -19,23 +20,7 @@ public class Server {
     Socket socket = null;
     RsaClass rsaClass = null;
     Map<Integer, Key> keyPair = null;
-
-    private void generatePort(){
-        Random random = new Random();
-        //端口范围：1024~63334
-        Integer port = random.nextInt(64510)+1024;
-        this.port = port;
-    }
-    public void listen(){
-        generatePort();
-        try {
-            serverSocket = new ServerSocket(this.port);
-            //开启监听线程
-            new Thread(new listenThread(serverSocket)).start();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
+    JTextArea textArea = null;
 
     /**
      * 生成RSA密钥对
@@ -56,35 +41,50 @@ public class Server {
     public Integer getPort(){
         return this.port;
     }
-
-}
-
-
-//监听线程
-class listenThread implements Runnable{
-    private ServerSocket serverSocket ;
-    private Socket socket;
-    public listenThread(ServerSocket serverSocket) {
-        this.serverSocket = serverSocket;
+    public void setPort(Integer port){
+        this.port = port;
     }
-
+    public Integer getClientPort(){
+        return this.clientPort;
+    }
+    public String getClientAddress(){
+        return this.clientAddress;
+    }
+    public void closeSocket() throws IOException {
+        if (this.socket != null){
+            socket.close();
+        }
+        if (this.serverSocket != null){
+            serverSocket.close();
+        }
+    }
+    public Socket getSocket(){
+        return this.socket;
+    }
+    public void setTextArea(JTextArea textArea){
+        this.textArea = textArea;
+    }
+    public void displayInformation(JTextArea textArea){
+        textArea.append("----与"+this.getSocket().getInetAddress()+":"+this.getSocket().getPort()+"建立连接----\n");
+    }
     @Override
     public void run() {
         try {
-            System.out.println("-----开始监听"+serverSocket.getLocalPort()+"端口----");
-            socket = serverSocket.accept();
-            System.out.println("----与"+socket.getInetAddress()+":"+socket.getPort()+"建立连接----");
-
+            this.serverSocket = new ServerSocket(this.port);
+            System.out.println("---服务端：开始监听端口"+port);
+            this.socket = serverSocket.accept();
+            this.clientAddress = socket.getInetAddress().toString();
+            this.clientPort = socket.getPort();
+            System.out.println("---与"+this.clientAddress+":"+this.clientPort+"建立连接---\n");
+            displayInformation(this.textArea);
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 }
-//发送文件线程
-class sendThread implements Runnable{
 
-    @Override
-    public void run() {
+class SendFile{
 
-    }
 }
+
+

@@ -4,11 +4,14 @@
 
 package sec.frame;
 
+import sec.socket.Client;
+
 import java.awt.*;
 import java.awt.event.*;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.net.ConnectException;
 import java.net.Socket;
 import javax.swing.*;
 import javax.swing.GroupLayout;
@@ -21,34 +24,41 @@ public class ClientFrame extends JFrame {
         initComponents();
     }
 
-    private void FileButtonActionPerformed(ActionEvent e) {
-        // TODO add your code here
+    public static void main(String[] args) {
+        new ClientFrame().setVisible(true);
     }
 
     private void ConnectButtonActionPerformed(ActionEvent e) {
         // TODO add your code here
         String serverIp = IPtextField.getText();
         String serverPort = PorttextField.getText();
-        Socket socket = null;
-        try {
-            socket = new Socket(serverIp, Integer.parseInt(serverPort));
-            InputStream inputStream = socket.getInputStream();
-            OutputStream outputStream = socket.getOutputStream();
 
-        } catch (IOException ex) {
+        clientSocket = new Client();
+        clientSocket.setServerIp(serverIp);
+        clientSocket.setServerPort(Integer.parseInt(serverPort));
+        Thread thread = new Thread(clientSocket);
+        thread.start();
+        try {
+            thread.join();
+            System.out.println("----服务器"+clientSocket.getServerIp()+"建立连接----");
+            this.ClientTextArea.append("----服务器"+clientSocket.getServerIp()+":"+clientSocket.getServerPort()+"建立连接----\n");
+
+        } catch (InterruptedException ex) {
             ex.printStackTrace();
         }
+
+
+
     }
 
     private void GenerateButtonActionPerformed(ActionEvent e) {
         // TODO add your code here
-
     }
 
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
         panel1 = new JPanel();
-        ServerTextArea = new JTextArea();
+        ClientTextArea = new JTextArea();
         IPlabel = new JLabel();
         IPtextField = new JTextField();
         Portlabel = new JLabel();
@@ -57,8 +67,9 @@ public class ClientFrame extends JFrame {
         GenerateButton = new JButton();
 
         //======== this ========
-        setTitle("\u670d\u52a1\u7aef");
+        setTitle("\u5ba2\u6237\u7aef");
         setFont(new Font("\u4eff\u5b8b", Font.PLAIN, 12));
+        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         Container contentPane = getContentPane();
 
         //======== panel1 ========
@@ -102,7 +113,7 @@ public class ClientFrame extends JFrame {
                         .addGap(24, 24, 24)
                         .addGroup(panel1Layout.createParallelGroup()
                             .addGroup(panel1Layout.createSequentialGroup()
-                                .addComponent(ServerTextArea, GroupLayout.DEFAULT_SIZE, 406, Short.MAX_VALUE)
+                                .addComponent(ClientTextArea, GroupLayout.DEFAULT_SIZE, 406, Short.MAX_VALUE)
                                 .addGap(18, 18, 18)
                                 .addComponent(GenerateButton, GroupLayout.PREFERRED_SIZE, 87, GroupLayout.PREFERRED_SIZE))
                             .addGroup(panel1Layout.createSequentialGroup()
@@ -113,7 +124,7 @@ public class ClientFrame extends JFrame {
                                 .addComponent(Portlabel)
                                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(PorttextField, GroupLayout.PREFERRED_SIZE, 73, GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 120, Short.MAX_VALUE)
+                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 122, Short.MAX_VALUE)
                                 .addComponent(ConnectButton, GroupLayout.PREFERRED_SIZE, 87, GroupLayout.PREFERRED_SIZE)))
                         .addGap(28, 28, 28))
             );
@@ -129,7 +140,7 @@ public class ClientFrame extends JFrame {
                             .addComponent(ConnectButton))
                         .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(panel1Layout.createParallelGroup()
-                            .addComponent(ServerTextArea, GroupLayout.PREFERRED_SIZE, 240, GroupLayout.PREFERRED_SIZE)
+                            .addComponent(ClientTextArea, GroupLayout.PREFERRED_SIZE, 240, GroupLayout.PREFERRED_SIZE)
                             .addComponent(GenerateButton))
                         .addContainerGap(37, Short.MAX_VALUE))
             );
@@ -154,12 +165,13 @@ public class ClientFrame extends JFrame {
 
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables
     private JPanel panel1;
-    private JTextArea ServerTextArea;
+    private JTextArea ClientTextArea;
     private JLabel IPlabel;
     private JTextField IPtextField;
     private JLabel Portlabel;
     private JTextField PorttextField;
     private JButton ConnectButton;
     private JButton GenerateButton;
+    private Client clientSocket;
     // JFormDesigner - End of variables declaration  //GEN-END:variables
 }
