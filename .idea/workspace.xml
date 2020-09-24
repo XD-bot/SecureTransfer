@@ -5,7 +5,8 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/output/sec/frame/ClientFrame.class" beforeDir="false" afterPath="$PROJECT_DIR$/output/sec/frame/ClientFrame.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/output/sec/socket/Client.class" beforeDir="false" afterPath="$PROJECT_DIR$/output/sec/socket/Client.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/output/sec/socket/Server.class" beforeDir="false" afterPath="$PROJECT_DIR$/output/sec/socket/Server.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sec/frame/ClientFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sec/frame/ClientFrame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sec/socket/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sec/socket/Client.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,7 +47,19 @@
     <property name="project.structure.side.proportion" value="0.291954" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
-  <component name="RunManager" selected="Application.ServerFrame">
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager" selected="Application.ClientFrame">
     <configuration name="ClientFrame" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="sec.frame.ClientFrame" />
       <module name="SecureTransfer-master" />
@@ -96,8 +109,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.ServerFrame" />
         <item itemvalue="Application.ClientFrame" />
+        <item itemvalue="Application.ServerFrame" />
         <item itemvalue="Application.testClientSocket" />
         <item itemvalue="Application.testServerSocket" />
         <item itemvalue="Application.testFrame" />

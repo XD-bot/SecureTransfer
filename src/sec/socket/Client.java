@@ -10,6 +10,7 @@ import java.io.OutputStream;
 import java.net.ConnectException;
 import java.net.Socket;
 import java.security.Key;
+import java.security.KeyPair;
 import java.security.NoSuchAlgorithmException;
 import java.util.Map;
 
@@ -36,16 +37,13 @@ public class Client implements Runnable{
         this.serverPort = serverPort;
     }
 
-    public void generateRsaKey(){
-        rsaClass = new RsaClass();
-        try {
-            keyPair = rsaClass.generateKeyPair();
-        } catch (NoSuchAlgorithmException e) {
-            e.printStackTrace();
-        }
-    }
+
     public void getClientPubKey(Socket socket){
 
+    }
+
+    public Socket getSocket(){
+        return this.socket;
     }
     @Override
     public void run() {

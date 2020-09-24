@@ -5,6 +5,7 @@
 package sec.frame;
 
 import sec.socket.Client;
+import sec.socket.GenerateKey;
 
 import java.awt.*;
 import java.awt.event.*;
@@ -36,12 +37,13 @@ public class ClientFrame extends JFrame {
         clientSocket = new Client();
         clientSocket.setServerIp(serverIp);
         clientSocket.setServerPort(Integer.parseInt(serverPort));
-        Thread thread = new Thread(clientSocket);
+        thread = new Thread(clientSocket);
         thread.start();
         try {
             thread.join();
             System.out.println("----服务器"+clientSocket.getServerIp()+"建立连接----");
             this.ClientTextArea.append("----服务器"+clientSocket.getServerIp()+":"+clientSocket.getServerPort()+"建立连接----\n");
+            this.socket = clientSocket.getSocket();
 
         } catch (InterruptedException ex) {
             ex.printStackTrace();
@@ -53,6 +55,12 @@ public class ClientFrame extends JFrame {
 
     private void GenerateButtonActionPerformed(ActionEvent e) {
         // TODO add your code here
+        generateKey = new GenerateKey();
+        generateKey.setSocket(this.socket);
+        generateKey.setjTextArea(this.ClientTextArea);
+        Thread thread1 = new Thread(generateKey);
+        thread1.start();
+
     }
 
     private void initComponents() {
@@ -173,5 +181,8 @@ public class ClientFrame extends JFrame {
     private JButton ConnectButton;
     private JButton GenerateButton;
     private Client clientSocket;
+    private Thread thread;
+    private Socket socket;
+    private GenerateKey generateKey;
     // JFormDesigner - End of variables declaration  //GEN-END:variables
 }
