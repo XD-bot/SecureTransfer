@@ -1,18 +1,18 @@
-JFDML JFormDesigner: "6.0.6.2.195" Java: "11.0.6" encoding: "UTF-8"
+JFDML JFormDesigner: "6.0.6.2.195" Java: "11.0.4" encoding: "UTF-8"
 
 new FormModel {
 	contentType: "form/swing"
 	root: new FormRoot {
 		add( new FormWindow( "javax.swing.JFrame", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-			"$horizontalGroup": "par l {seq l {space :::p, comp panel1:::p::p, space ::17:x}}"
+			"$horizontalGroup": "par l {seq l {space :::p, comp panel1:::p::p, space ::15:x}}"
 			"$verticalGroup": "par l {seq l {space :::p, comp panel1:::p::p, space :::x}}"
 		} ) {
 			name: "this"
 			"title": "服务端"
 			"font": new com.jformdesigner.model.SwingDerivedFont( "仿宋", 196608, 12, true )
 			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-				"$horizontalGroup": "par l {seq l {space :p:24:p, par l {seq {par l {seq t {comp Filelabel:::p::p, space :::p}, seq t {comp Filelabel2:::p::p, space :p:35:p}}, par l {comp PorttextField:::p:99:p, comp PathtextField:::p:327:p}}, comp ServerTextArea:::p:405:p}, space :::p, par l:::p {comp FileButton::l:::x, comp StartButton::l:::x, comp SendButton::l:::x, comp DisconntButton::l:::x}, space ::18:x}}"
-				"$verticalGroup": "par l {seq l {space :p:19:p, par b {comp Filelabel::b:p:39:p, comp PathtextField::b:p::p, comp FileButton::b:p::p}, space u:::p, par b {comp StartButton::b:p::p, comp Filelabel2::b:p:39:p, comp PorttextField::b:p::p}, space s:::p, par l {seq {comp SendButton:::p:30:p, space :p:18:p, comp DisconntButton:::p::p}, comp ServerTextArea:::p:204:p}, space ::62:x}}"
+				"$horizontalGroup": "par l {seq l {space :p:24:p, par l {seq {par l {seq t {comp Filelabel:::p::p, space :::p}, seq t {comp Filelabel2:::p::p, space :p:35:p}}, par l {comp PorttextField:::p:99:p, comp PathtextField:::p:327:p}}, comp scrollPane1:::p:406:p}, space :::p, par l:::p {comp FileButton::l:::x, comp StartButton::l:::x, comp SendButton::l:::x, comp DisconntButton::l:::x}, space ::18:x}}"
+				"$verticalGroup": "par l {seq l {space :p:19:p, par b {comp Filelabel::b:p:39:p, comp PathtextField::b:p::p, comp FileButton::b:p::p}, space u:::p, par b {comp StartButton::b:p::p, comp Filelabel2::b:p:39:p, comp PorttextField::b:p::p}, space s:::p, par l {seq {comp SendButton:::p:30:p, space :p:36:p, comp DisconntButton:::p::p}, comp scrollPane1:::p:229:p}, space ::37:x}}"
 			} ) {
 				name: "panel1"
 				add( new FormComponent( "javax.swing.JLabel" ) {
@@ -31,9 +31,6 @@ new FormModel {
 					"font": &SwingDerivedFont2 new com.jformdesigner.model.SwingDerivedFont( "微软雅黑", 196608, 3, false )
 					addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "FileButtonActionPerformed", true ) )
 					addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "FileButtonActionPerformed", true ) )
-				} )
-				add( new FormComponent( "javax.swing.JTextArea" ) {
-					name: "ServerTextArea"
 				} )
 				add( new FormComponent( "javax.swing.JButton" ) {
 					name: "SendButton"
@@ -68,6 +65,12 @@ new FormModel {
 				add( new FormComponent( "javax.swing.JTextField" ) {
 					name: "PorttextField"
 					"font": #SwingDerivedFont1
+				} )
+				add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
+					name: "scrollPane1"
+					add( new FormComponent( "javax.swing.JTextArea" ) {
+						name: "ServerTextArea"
+					} )
 				} )
 			} )
 		}, new FormLayoutConstraints( null ) {

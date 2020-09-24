@@ -66,13 +66,14 @@ public class ClientFrame extends JFrame {
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
         panel1 = new JPanel();
-        ClientTextArea = new JTextArea();
         IPlabel = new JLabel();
         IPtextField = new JTextField();
         Portlabel = new JLabel();
         PorttextField = new JTextField();
         ConnectButton = new JButton();
         GenerateButton = new JButton();
+        scrollPane1 = new JScrollPane();
+        ClientTextArea = new JTextArea();
 
         //======== this ========
         setTitle("\u5ba2\u6237\u7aef");
@@ -113,6 +114,15 @@ public class ClientFrame extends JFrame {
             GenerateButton.setContentAreaFilled(false);
             GenerateButton.addActionListener(e -> GenerateButtonActionPerformed(e));
 
+            //======== scrollPane1 ========
+            {
+
+                //---- ClientTextArea ----
+                ClientTextArea.setLineWrap(true);
+                ClientTextArea.setWrapStyleWord(true);
+                scrollPane1.setViewportView(ClientTextArea);
+            }
+
             GroupLayout panel1Layout = new GroupLayout(panel1);
             panel1.setLayout(panel1Layout);
             panel1Layout.setHorizontalGroup(
@@ -121,8 +131,8 @@ public class ClientFrame extends JFrame {
                         .addGap(24, 24, 24)
                         .addGroup(panel1Layout.createParallelGroup()
                             .addGroup(panel1Layout.createSequentialGroup()
-                                .addComponent(ClientTextArea, GroupLayout.DEFAULT_SIZE, 406, Short.MAX_VALUE)
-                                .addGap(18, 18, 18)
+                                .addComponent(scrollPane1, GroupLayout.PREFERRED_SIZE, 386, GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
                                 .addComponent(GenerateButton, GroupLayout.PREFERRED_SIZE, 87, GroupLayout.PREFERRED_SIZE))
                             .addGroup(panel1Layout.createSequentialGroup()
                                 .addComponent(IPlabel)
@@ -132,7 +142,7 @@ public class ClientFrame extends JFrame {
                                 .addComponent(Portlabel)
                                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(PorttextField, GroupLayout.PREFERRED_SIZE, 73, GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 122, Short.MAX_VALUE)
+                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 120, Short.MAX_VALUE)
                                 .addComponent(ConnectButton, GroupLayout.PREFERRED_SIZE, 87, GroupLayout.PREFERRED_SIZE)))
                         .addGap(28, 28, 28))
             );
@@ -146,11 +156,14 @@ public class ClientFrame extends JFrame {
                             .addComponent(Portlabel, GroupLayout.PREFERRED_SIZE, 39, GroupLayout.PREFERRED_SIZE)
                             .addComponent(PorttextField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                             .addComponent(ConnectButton))
-                        .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(panel1Layout.createParallelGroup()
-                            .addComponent(ClientTextArea, GroupLayout.PREFERRED_SIZE, 240, GroupLayout.PREFERRED_SIZE)
-                            .addComponent(GenerateButton))
-                        .addContainerGap(37, Short.MAX_VALUE))
+                            .addGroup(panel1Layout.createSequentialGroup()
+                                .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(GenerateButton))
+                            .addGroup(panel1Layout.createSequentialGroup()
+                                .addGap(33, 33, 33)
+                                .addComponent(scrollPane1, GroupLayout.PREFERRED_SIZE, 208, GroupLayout.PREFERRED_SIZE)))
+                        .addContainerGap(48, Short.MAX_VALUE))
             );
         }
 
@@ -173,13 +186,14 @@ public class ClientFrame extends JFrame {
 
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables
     private JPanel panel1;
-    private JTextArea ClientTextArea;
     private JLabel IPlabel;
     private JTextField IPtextField;
     private JLabel Portlabel;
     private JTextField PorttextField;
     private JButton ConnectButton;
     private JButton GenerateButton;
+    private JScrollPane scrollPane1;
+    private JTextArea ClientTextArea;
     private Client clientSocket;
     private Thread thread;
     private Socket socket;

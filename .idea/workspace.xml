@@ -4,9 +4,12 @@
     <list default="true" id="38c2d41a-6c28-4384-a2d5-5c0914c279c0" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/output/sec/frame/ClientFrame.class" beforeDir="false" afterPath="$PROJECT_DIR$/output/sec/frame/ClientFrame.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/output/sec/socket/Client.class" beforeDir="false" afterPath="$PROJECT_DIR$/output/sec/socket/Client.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/sec/frame/ClientFrame.jfd" beforeDir="false" afterPath="$PROJECT_DIR$/output/sec/frame/ClientFrame.jfd" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/sec/frame/ClientFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sec/frame/ClientFrame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sec/socket/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sec/socket/Client.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sec/frame/ClientFrame.jfd" beforeDir="false" afterPath="$PROJECT_DIR$/src/sec/frame/ClientFrame.jfd" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sec/frame/ServerFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sec/frame/ServerFrame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sec/frame/ServerFrame.jfd" beforeDir="false" afterPath="$PROJECT_DIR$/src/sec/frame/ServerFrame.jfd" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sec/socket/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sec/socket/Server.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -59,7 +62,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.ClientFrame">
+  <component name="RunManager" selected="Application.ServerFrame">
     <configuration name="ClientFrame" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="sec.frame.ClientFrame" />
       <module name="SecureTransfer-master" />
@@ -109,8 +112,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.ClientFrame" />
         <item itemvalue="Application.ServerFrame" />
+        <item itemvalue="Application.ClientFrame" />
         <item itemvalue="Application.testClientSocket" />
         <item itemvalue="Application.testServerSocket" />
         <item itemvalue="Application.testFrame" />

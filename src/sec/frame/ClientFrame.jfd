@@ -1,4 +1,4 @@
-JFDML JFormDesigner: "6.0.6.2.195" Java: "11.0.6" encoding: "UTF-8"
+JFDML JFormDesigner: "6.0.6.2.195" Java: "11.0.4" encoding: "UTF-8"
 
 new FormModel {
 	contentType: "form/swing"
@@ -11,13 +11,10 @@ new FormModel {
 			"title": "客户端"
 			"font": new com.jformdesigner.model.SwingDerivedFont( "仿宋", 196608, 12, true )
 			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-				"$horizontalGroup": "par l {seq l {space :p:24:p, par l {seq {comp ClientTextArea::::406:x, space s:::p, comp GenerateButton:::p:87:p}, seq l {comp IPlabel:::p::p, space :::p, comp IPtextField:::p:106:p, space u:::p, comp Portlabel:::p::p, space :::p, comp PorttextField:::p:73:p, space ::122:x, comp ConnectButton:::p:87:p}}, space :p:28:p}}"
-				"$verticalGroup": "par l {seq l {space :p:14:p, par b {comp IPlabel::b:p:39:p, comp IPtextField::b:p::p, comp Portlabel::b:p:39:p, comp PorttextField::b:p::p, comp ConnectButton::b:p::p}, space u:::p, par l {comp ClientTextArea:::p:240:p, comp GenerateButton:::p::p}, space ::37:x}}"
+				"$horizontalGroup": "par l {seq l {space :p:24:p, par l {seq {comp scrollPane1:::p:386:p, space ::38:x, comp GenerateButton:::p:87:p}, seq {comp IPlabel:::p::p, space :::p, comp IPtextField:::p:106:p, space u:::p, comp Portlabel:::p::p, space :::p, comp PorttextField:::p:73:p, space ::120:x, comp ConnectButton:::p:87:p}}, space :p:28:p}}"
+				"$verticalGroup": "par l {seq l {space :p:14:p, par b {comp IPlabel::b:p:39:p, comp IPtextField::b:p::p, comp Portlabel::b:p:39:p, comp PorttextField::b:p::p, comp ConnectButton::b:p::p}, par l {seq {space u:::p, comp GenerateButton:::p::p}, seq l {space :p:33:p, comp scrollPane1:::p:208:p}}, space ::48:x}}"
 			} ) {
 				name: "panel1"
-				add( new FormComponent( "javax.swing.JTextArea" ) {
-					name: "ClientTextArea"
-				} )
 				add( new FormComponent( "javax.swing.JLabel" ) {
 					name: "IPlabel"
 					"text": "IP地址："
@@ -52,6 +49,14 @@ new FormModel {
 					"border": #SwingBorder0
 					"contentAreaFilled": false
 					addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "GenerateButtonActionPerformed", true ) )
+				} )
+				add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
+					name: "scrollPane1"
+					add( new FormComponent( "javax.swing.JTextArea" ) {
+						name: "ClientTextArea"
+						"lineWrap": true
+						"wrapStyleWord": true
+					} )
 				} )
 			} )
 		}, new FormLayoutConstraints( null ) {

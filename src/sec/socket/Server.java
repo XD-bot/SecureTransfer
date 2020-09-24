@@ -83,8 +83,5 @@ public class Server implements Runnable{
     }
 }
 
-class SendFile{
-
-}
 
 
