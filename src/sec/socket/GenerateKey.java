@@ -14,13 +14,7 @@ public class GenerateKey implements Runnable{
         private JTextArea jTextArea;
         private RsaClass rsaClass;
         private Map keyPair;
-        public Socket getSocket() {
-            return socket;
-        }
 
-        public void setSocket(Socket socket) {
-            this.socket = socket;
-        }
 
         public JTextArea getjTextArea() {
             return jTextArea;

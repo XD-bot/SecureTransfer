@@ -3,14 +3,11 @@
   <component name="ChangeListManager">
     <list default="true" id="38c2d41a-6c28-4384-a2d5-5c0914c279c0" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/output/sec/frame/ClientFrame.class" beforeDir="false" afterPath="$PROJECT_DIR$/output/sec/frame/ClientFrame.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/output/sec/frame/ClientFrame.jfd" beforeDir="false" afterPath="$PROJECT_DIR$/output/sec/frame/ClientFrame.jfd" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/sec/frame/ClientFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sec/frame/ClientFrame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sec/frame/ClientFrame.jfd" beforeDir="false" afterPath="$PROJECT_DIR$/src/sec/frame/ClientFrame.jfd" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/sec/frame/ServerFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sec/frame/ServerFrame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sec/frame/ServerFrame.jfd" beforeDir="false" afterPath="$PROJECT_DIR$/src/sec/frame/ServerFrame.jfd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sec/socket/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sec/socket/Server.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sec/socket/GenerateKey.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sec/socket/GenerateKey.java" afterDir="false" />
     </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -149,6 +146,7 @@
       <workItem from="1600590560724" duration="25000" />
       <workItem from="1600590603219" duration="9163000" />
       <workItem from="1600762929394" duration="2988000" />
+      <workItem from="1601274626017" duration="4551000" />
     </task>
     <servers />
   </component>

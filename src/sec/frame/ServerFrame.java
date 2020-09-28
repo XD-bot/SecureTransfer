@@ -8,11 +8,11 @@ import sec.socket.Server;
 
 import java.awt.*;
 import java.awt.event.*;
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
 import java.net.InetAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.security.Key;
 import java.util.Random;
 import javax.swing.*;
 import javax.swing.GroupLayout;
@@ -49,6 +49,26 @@ public class ServerFrame extends JFrame {
 
     private void SendButtonActionPerformed(ActionEvent e) {
         // TODO add your code here
+        try {
+            thread.join();
+            socket = serverSocket.getSocket();
+            System.out.println(socket.getInetAddress()+":"+socket.getPort());
+            try {
+                inputStream = socket.getInputStream();
+                BufferedReader br=new BufferedReader(new InputStreamReader(inputStream));
+                String clientPubKey = null;
+                while (!((clientPubKey=br.readLine())==null)) {
+                    System.out.println(clientPubKey);
+                    ServerTextArea.append("客户端的RSA公钥："+clientPubKey+"\n");
+                }
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+
+        } catch (InterruptedException ex) {
+            ex.printStackTrace();
+        }
+
     }
 
     private void DisconntButtonActionPerformed(ActionEvent e) {
@@ -70,7 +90,7 @@ public class ServerFrame extends JFrame {
         else {
             serverSocket.setPort(port);
             serverSocket.setTextArea(this.ServerTextArea);
-            Thread thread = new Thread(serverSocket);
+            thread = new Thread(serverSocket);
             ServerTextArea.append("----开始监听端口" + serverSocket.getPort() + "----\n");
             thread.start();
 
@@ -92,10 +112,13 @@ public class ServerFrame extends JFrame {
         PorttextField = new JTextField();
         scrollPane1 = new JScrollPane();
         ServerTextArea = new JTextArea();
-
+        serverSocket = new Server();
+        thread = null;
+        socket = null;
         //======== this ========
         setTitle("\u670d\u52a1\u7aef");
         setFont(new Font("\u4eff\u5b8b", Font.PLAIN, 12));
+        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         Container contentPane = getContentPane();
 
         //======== panel1 ========
@@ -114,7 +137,7 @@ public class ServerFrame extends JFrame {
             FileButton.setFont(new Font("\u5fae\u8f6f\u96c5\u9ed1", Font.PLAIN, FileButton.getFont().getSize() + 3));
             FileButton.addActionListener(e -> {
 			FileButtonActionPerformed(e);
-			FileButtonActionPerformed(e);
+
 		});
 
             //---- SendButton ----
@@ -122,7 +145,6 @@ public class ServerFrame extends JFrame {
             SendButton.setContentAreaFilled(false);
             SendButton.setFont(new Font("\u5fae\u8f6f\u96c5\u9ed1", Font.PLAIN, SendButton.getFont().getSize() + 3));
             SendButton.addActionListener(e -> {
-			FileButtonActionPerformed(e);
 			SendButtonActionPerformed(e);
 		});
 
@@ -131,7 +153,7 @@ public class ServerFrame extends JFrame {
             DisconntButton.setContentAreaFilled(false);
             DisconntButton.setFont(new Font("\u5fae\u8f6f\u96c5\u9ed1", Font.PLAIN, DisconntButton.getFont().getSize() + 3));
             DisconntButton.addActionListener(e -> {
-			FileButtonActionPerformed(e);
+
 			DisconntButtonActionPerformed(e);
 		});
 
@@ -140,8 +162,7 @@ public class ServerFrame extends JFrame {
             StartButton.setContentAreaFilled(false);
             StartButton.setFont(new Font("\u5fae\u8f6f\u96c5\u9ed1", Font.PLAIN, StartButton.getFont().getSize() + 3));
             StartButton.addActionListener(e -> {
-			FileButtonActionPerformed(e);
-			FileButtonActionPerformed(e);
+
 			StartButtonActionPerformed(e);
 		});
 
@@ -241,5 +262,10 @@ public class ServerFrame extends JFrame {
     private JTextField PorttextField;
     private JScrollPane scrollPane1;
     private JTextArea ServerTextArea;
+    private Server serverSocket;
+    private Thread thread;
+    private Socket socket;
+    private InputStream inputStream;
+    private OutputStream outputStream;
     // JFormDesigner - End of variables declaration  //GEN-END:variables
 }

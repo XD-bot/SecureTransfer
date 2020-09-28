@@ -14,6 +14,7 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.ConnectException;
 import java.net.Socket;
+import java.util.Map;
 import javax.swing.*;
 import javax.swing.GroupLayout;
 
@@ -44,6 +45,12 @@ public class ClientFrame extends JFrame {
             System.out.println("----服务器"+clientSocket.getServerIp()+"建立连接----");
             this.ClientTextArea.append("----服务器"+clientSocket.getServerIp()+":"+clientSocket.getServerPort()+"建立连接----\n");
             this.socket = clientSocket.getSocket();
+            try {
+                inputStream = socket.getInputStream();
+                outputStream = socket.getOutputStream();
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
 
         } catch (InterruptedException ex) {
             ex.printStackTrace();
@@ -56,10 +63,20 @@ public class ClientFrame extends JFrame {
     private void GenerateButtonActionPerformed(ActionEvent e) {
         // TODO add your code here
         generateKey = new GenerateKey();
-        generateKey.setSocket(this.socket);
+
         generateKey.setjTextArea(this.ClientTextArea);
         Thread thread1 = new Thread(generateKey);
         thread1.start();
+        try {
+            thread1.join();
+            Map keyPair = generateKey.getKeyPair();
+            //Map[0]为公钥
+            outputStream.write(keyPair.get(0).toString().getBytes());
+        } catch (InterruptedException ex) {
+            ex.printStackTrace();
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
 
     }
 
@@ -198,5 +215,7 @@ public class ClientFrame extends JFrame {
     private Thread thread;
     private Socket socket;
     private GenerateKey generateKey;
+    private InputStream inputStream;
+    private OutputStream outputStream;
     // JFormDesigner - End of variables declaration  //GEN-END:variables
 }
