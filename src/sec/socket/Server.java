@@ -19,7 +19,7 @@ public class Server implements Runnable{
     ServerSocket serverSocket = null;
     Socket socket = null;
     RsaClass rsaClass = null;
-    Map<Integer, Key> keyPair = null;
+    Map<Integer, String> keyPair = null;
     JTextArea textArea = null;
 
     /**
@@ -28,9 +28,9 @@ public class Server implements Runnable{
     public void generateRsa(){
         rsaClass = new RsaClass();
         try {
-            keyPair = rsaClass.generateKeyPair();
+            keyPair = rsaClass.generateKeyPair(1024);
             System.out.println(keyPair.get(1));
-        } catch (NoSuchAlgorithmException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
 

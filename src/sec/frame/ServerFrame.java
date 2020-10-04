@@ -4,16 +4,19 @@
 
 package sec.frame;
 
+import sec.crypto.DesClass;
+import sec.crypto.RsaClass;
+import sec.socket.GenerateKey;
 import sec.socket.Server;
 
 import java.awt.*;
 import java.awt.event.*;
 import java.io.*;
-import java.net.InetAddress;
-import java.net.ServerSocket;
 import java.net.Socket;
 import java.security.Key;
-import java.util.Random;
+import java.security.PrivateKey;
+import java.security.PublicKey;
+import java.util.Map;
 import javax.swing.*;
 import javax.swing.GroupLayout;
 
@@ -34,7 +37,7 @@ public class ServerFrame extends JFrame {
         jfc.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
         int returnVal = jfc.showOpenDialog(this);
         if (returnVal == 0){
-            File file = jfc.getSelectedFile();
+            file = jfc.getSelectedFile();
             if(file.isDirectory()){
                 System.out.println("文件夹："+file.getAbsolutePath());
             }else if(file.isFile()){
@@ -53,21 +56,52 @@ public class ServerFrame extends JFrame {
             thread.join();
             socket = serverSocket.getSocket();
             System.out.println(socket.getInetAddress()+":"+socket.getPort());
+            GenerateKey generateKey = new GenerateKey();
             try {
                 inputStream = socket.getInputStream();
                 BufferedReader br=new BufferedReader(new InputStreamReader(inputStream));
-                String clientPubKey = null;
-                while (!((clientPubKey=br.readLine())==null)) {
-                    System.out.println(clientPubKey);
-                    ServerTextArea.append("客户端的RSA公钥："+clientPubKey+"\n");
+                String clientPubKeyString = null;
+                while (!((clientPubKeyString=br.readLine())==null)) {
+
+                    ServerTextArea.append("客户端的RSA公钥："+clientPubKeyString+"\n");
+                    //获取客户端的公钥
+                    clientPubKey = rsaClass.getPublicKey(clientPubKeyString);
+
                 }
-            } catch (IOException ex) {
+                //生成RSA密钥对
+                generateKey.setjTextArea(this.ServerTextArea);
+                Thread thread = new Thread(generateKey);
+                thread.start();
+                thread.join();
+                String serverPriKeyString = generateKey.getPrivateKey();
+                String serverPubKeyString = generateKey.getPublicKey();
+                serverPubKey = rsaClass.getPublicKey(serverPubKeyString);
+                serverPriKey = rsaClass.getPrivateKey(serverPriKeyString);
+                //将服务器的RSA公钥发送到Client
+                outputStream = socket.getOutputStream();
+                outputStream.write(serverPubKeyString.getBytes());
+                outputStream.write("\\|".getBytes());
+                //socket.shutdownOutput();
+
+                //默认DES密钥为"test1234"
+                this.ServerTextArea.append("----默认DES密钥为:test1234----\n");
+                //用客户端的RSA公钥加密DES密钥
+                byte[] enDesKey = rsaClass.encrypt(DesKey.getBytes(), clientPubKey);
+                //将加密后的Des密钥发送到客户端
+                //outputStream = socket.getOutputStream();
+                outputStream.write(enDesKey);
+                outputStream.flush();
+                socket.shutdownOutput();
+
+            } catch (Exception ex) {
                 ex.printStackTrace();
             }
 
         } catch (InterruptedException ex) {
             ex.printStackTrace();
         }
+
+
 
     }
 
@@ -115,6 +149,14 @@ public class ServerFrame extends JFrame {
         serverSocket = new Server();
         thread = null;
         socket = null;
+        rsaClass = new RsaClass();
+        desClass = new DesClass();
+        clientPubKey = null;
+        file = null;
+        keyPair = null;
+        serverPriKey = null;
+        serverPubKey = null;
+        DesKey = "test1234";
         //======== this ========
         setTitle("\u670d\u52a1\u7aef");
         setFont(new Font("\u4eff\u5b8b", Font.PLAIN, 12));
@@ -267,5 +309,13 @@ public class ServerFrame extends JFrame {
     private Socket socket;
     private InputStream inputStream;
     private OutputStream outputStream;
+    private RsaClass rsaClass;
+    private PublicKey clientPubKey;
+    private File file;
+    private Map<Integer,String> keyPair;
+    private PublicKey serverPubKey;
+    private PrivateKey serverPriKey;
+    private String DesKey;
+    private DesClass desClass;
     // JFormDesigner - End of variables declaration  //GEN-END:variables
 }

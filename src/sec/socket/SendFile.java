@@ -1,21 +1,31 @@
 package sec.socket;
 
+import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.Socket;
 
 public class SendFile implements Runnable {
-    private String filePath;
+    private byte[] buf = new byte[2048];
     private Socket socket;
     private InputStream is;
     private OutputStream os;
-    private Integer flag;   //flag = 1: 发送文件; flag=0:发送公钥
-    SendFile(Socket socket,Integer flag){
+    SendFile(Socket socket,byte[] buf){
         this.socket = socket;
-        this.flag = flag;
+        this.buf = buf;
     }
+
     @Override
     public void run() {
-
+        if (socket == null){
+            return;
+        }
+        try {
+            os = socket.getOutputStream();
+            os.write(buf);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

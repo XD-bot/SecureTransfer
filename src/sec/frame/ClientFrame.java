@@ -9,11 +9,10 @@ import sec.socket.GenerateKey;
 
 import java.awt.*;
 import java.awt.event.*;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
+import java.io.*;
 import java.net.ConnectException;
 import java.net.Socket;
+import java.security.PublicKey;
 import java.util.Map;
 import javax.swing.*;
 import javax.swing.GroupLayout;
@@ -67,11 +66,29 @@ public class ClientFrame extends JFrame {
         generateKey.setjTextArea(this.ClientTextArea);
         Thread thread1 = new Thread(generateKey);
         thread1.start();
+
         try {
             thread1.join();
             Map keyPair = generateKey.getKeyPair();
             //Map[0]为公钥
-            outputStream.write(keyPair.get(0).toString().getBytes());
+            clientPubKeyStr = generateKey.getPublicKey();
+            clientPriKeyStr = generateKey.getPrivateKey();
+            outputStream.write(clientPubKeyStr.getBytes());
+            socket.shutdownOutput();
+            BufferedReader br = new BufferedReader(new InputStreamReader(inputStream));
+            String serverPubKeyString = null;
+            String readBufferStr = null;
+            String []tmp = null;
+            Thread.sleep(5000);
+            while (!((readBufferStr=br.readLine())==null) ){
+                tmp = readBufferStr.split("\\|");
+            }
+            serverPubKeyString = tmp[0].replace("\\","");
+            enDesKey = tmp[1];
+            System.out.println("服务器RSA公钥："+serverPubKeyString);
+            System.out.println("DES密钥："+enDesKey);
+
+
         } catch (InterruptedException ex) {
             ex.printStackTrace();
         } catch (IOException ex) {
@@ -91,7 +108,10 @@ public class ClientFrame extends JFrame {
         GenerateButton = new JButton();
         scrollPane1 = new JScrollPane();
         ClientTextArea = new JTextArea();
-
+        clientPriKeyStr = null;
+        clientPubKeyStr = null;
+        enDesKey = null;
+        serverPubKey = null;
         //======== this ========
         setTitle("\u5ba2\u6237\u7aef");
         setFont(new Font("\u4eff\u5b8b", Font.PLAIN, 12));
@@ -217,5 +237,9 @@ public class ClientFrame extends JFrame {
     private GenerateKey generateKey;
     private InputStream inputStream;
     private OutputStream outputStream;
+    private String clientPubKeyStr;
+    private String clientPriKeyStr;
+    private String enDesKey;
+    private PublicKey serverPubKey;
     // JFormDesigner - End of variables declaration  //GEN-END:variables
 }

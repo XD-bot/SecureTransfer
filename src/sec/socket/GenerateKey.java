@@ -13,8 +13,9 @@ public class GenerateKey implements Runnable{
         private Socket socket;
         private JTextArea jTextArea;
         private RsaClass rsaClass;
-        private Map keyPair;
-
+        private String publicKey;
+        private String privateKey;
+        private Map<Integer,String> keyPair;
 
         public JTextArea getjTextArea() {
             return jTextArea;
@@ -29,20 +30,28 @@ public class GenerateKey implements Runnable{
         }
 
 
-        public void generateRsaKey(){
+        public void generateRsaKeyPair(){
             rsaClass = new RsaClass();
-            try {
-                keyPair = rsaClass.generateKeyPair();
-            } catch (NoSuchAlgorithmException e) {
-                e.printStackTrace();
-            }
+            keyPair = rsaClass.generateKeyPair(1024);
+
         }
-        @Override
+
+    public String getPublicKey() {
+        return publicKey;
+    }
+
+    public String getPrivateKey() {
+        return privateKey;
+    }
+
+    @Override
         public void run() {
-            generateRsaKey();
+            generateRsaKeyPair();
+            publicKey = this.keyPair.get(0);
+            privateKey = this.keyPair.get(1);
             this.jTextArea.append("----RSA生成密钥对----\n");
-            this.jTextArea.append("公钥："+this.keyPair.get(0).toString()+"\n");
-            this.jTextArea.append("私钥："+this.keyPair.get(1).toString()+"\n");
+            this.jTextArea.append("公钥："+publicKey+"\n");
+            this.jTextArea.append("私钥："+privateKey+"\n");
 
         }
 
