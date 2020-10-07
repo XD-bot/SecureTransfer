@@ -4,16 +4,26 @@
 
 package sec.frame;
 
+import sec.crypto.DesClass;
+import sec.crypto.MD5Class;
+import sec.crypto.RsaClass;
 import sec.socket.Client;
 import sec.socket.GenerateKey;
 
 import java.awt.*;
 import java.awt.event.*;
 import java.io.*;
-import java.net.ConnectException;
 import java.net.Socket;
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
 import java.security.PublicKey;
+import java.security.interfaces.RSAPrivateKey;
+import java.security.spec.InvalidKeySpecException;
+import java.util.Arrays;
 import java.util.Map;
+import javax.crypto.BadPaddingException;
+import javax.crypto.IllegalBlockSizeException;
+import javax.crypto.NoSuchPaddingException;
 import javax.swing.*;
 import javax.swing.GroupLayout;
 
@@ -37,23 +47,27 @@ public class ClientFrame extends JFrame {
         clientSocket = new Client();
         clientSocket.setServerIp(serverIp);
         clientSocket.setServerPort(Integer.parseInt(serverPort));
+        clientSocket.setjTextArea(ClientTextArea);
         thread = new Thread(clientSocket);
         thread.start();
+        Integer flag ;
         try {
             thread.join();
-            System.out.println("----服务器"+clientSocket.getServerIp()+"建立连接----");
-            this.ClientTextArea.append("----服务器"+clientSocket.getServerIp()+":"+clientSocket.getServerPort()+"建立连接----\n");
-            this.socket = clientSocket.getSocket();
-            try {
-                inputStream = socket.getInputStream();
-                outputStream = socket.getOutputStream();
-            } catch (IOException ex) {
+            flag = clientSocket.getFlag();
+            if (0 == flag) {
+                System.out.println("----服务器" + clientSocket.getServerIp() + "建立连接----");
+                this.ClientTextArea.append("----服务器" + clientSocket.getServerIp() + ":" + clientSocket.getServerPort() + "建立连接----\n");
+                this.socket = clientSocket.getSocket();
+                try {
+                    inputStream = socket.getInputStream();
+                    outputStream = socket.getOutputStream();
+                } catch (IOException ex) {
+                    ex.printStackTrace();
+                }
+            }
+            } catch(InterruptedException ex){
                 ex.printStackTrace();
             }
-
-        } catch (InterruptedException ex) {
-            ex.printStackTrace();
-        }
 
 
 
@@ -70,30 +84,112 @@ public class ClientFrame extends JFrame {
         try {
             thread1.join();
             Map keyPair = generateKey.getKeyPair();
-            //Map[0]为公钥
+
             clientPubKeyStr = generateKey.getPublicKey();
             clientPriKeyStr = generateKey.getPrivateKey();
             outputStream.write(clientPubKeyStr.getBytes());
             socket.shutdownOutput();
+
             BufferedReader br = new BufferedReader(new InputStreamReader(inputStream));
             String serverPubKeyString = null;
             String readBufferStr = null;
-            String []tmp = null;
+            StringBuffer tmp = new StringBuffer();
+
             Thread.sleep(5000);
-            while (!((readBufferStr=br.readLine())==null) ){
-                tmp = readBufferStr.split("\\|");
+
+
+            serverPubKeyString = br.readLine().replace("\\","");
+
+            int firstByte = inputStream.read();
+            int length = inputStream.available();
+            byte[] b = new byte[length+1];
+            b[0] = (byte)firstByte;
+            inputStream.read(b,1,length);
+            System.out.println("---------------------------------");
+//            System.out.println(tmp.toString());
+            //DES密钥
+            //0 - 215
+            //216 -
+            System.out.println(length);
+            for (byte b1 : b) {
+                System.out.print(b1+" ");
             }
-            serverPubKeyString = tmp[0].replace("\\","");
-            enDesKey = tmp[1];
+            System.out.println();
+            desStrBytes = new byte[128];
+            System.arraycopy(b,0,desStrBytes,0,128);
+            for (byte b1 : b) {
+                System.out.print(b1+" ");
+            }
+            byte []signBytes = new byte[128];
+            System.arraycopy(b,128,signBytes,0,128);
+
+            System.out.println("des长度"+desStrBytes.length);
+            System.out.println("公钥长度"+serverPubKeyString.getBytes().length);
+
+
+            try {
+                serverPubKey = rsaClass.getPublicKey(serverPubKeyString);
+            } catch (NoSuchAlgorithmException | InvalidKeySpecException ex) {
+                ex.printStackTrace();
+            }
             System.out.println("服务器RSA公钥："+serverPubKeyString);
-            System.out.println("DES密钥："+enDesKey);
+            RSAPrivateKey privateKey = rsaClass.getPrivateKey(clientPriKeyStr);
+            System.out.println("DES bytes"+Arrays.toString(desStrBytes));
+            System.out.println("DES密钥："+ Arrays.toString(rsaClass.decrypt(desStrBytes, privateKey)));
+            System.out.println("签名长度："+signBytes.length);
+
+            for (byte signByte : signBytes) {
+                System.out.print(signByte+" ");
+            }
+            ClientTextArea.append("----服务器RSA公钥----\n");
+            ClientTextArea.append(serverPubKeyString+"\n");
+            ClientTextArea.append("----已接收文件----\n");
+
+        
 
 
-        } catch (InterruptedException ex) {
+        } catch (InterruptedException | IOException | NoSuchAlgorithmException ex) {
             ex.printStackTrace();
-        } catch (IOException ex) {
+        } catch (InvalidKeySpecException ex) {
+            ex.printStackTrace();
+        } catch (NoSuchPaddingException ex) {
+            ex.printStackTrace();
+        } catch (InvalidKeyException ex) {
+            ex.printStackTrace();
+        } catch (IllegalBlockSizeException ex) {
+            ex.printStackTrace();
+        } catch (BadPaddingException ex) {
             ex.printStackTrace();
         }
+
+    }
+
+    private void ModifyButtonActionPerformed(ActionEvent e) {
+        // TODO add your code here
+
+
+        try {
+            //RSA公钥解密签名
+            byte[] deServerSign = rsaClass.decrypt(desStrBytes, serverPubKey);
+
+            //RSA私钥解密DES密钥
+            RSAPrivateKey clientPriKey = rsaClass.getPrivateKey(clientPriKeyStr);
+            byte[] deDesKey = rsaClass.decrypt(enDesKey.getBytes(), clientPriKey);
+
+            //生成MD5摘要
+            String fileStr = DesClass.decrypt(fileString, Arrays.toString(deDesKey));
+            String md5FileSign = MD5Class.getMD5(fileStr);
+
+            if (md5FileSign.equals(deServerSign.toString())){
+                System.out.println("发送的文件摘要和生成的一致");
+            }
+            else {
+                System.out.println("错误");
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+
 
     }
 
@@ -108,10 +204,8 @@ public class ClientFrame extends JFrame {
         GenerateButton = new JButton();
         scrollPane1 = new JScrollPane();
         ClientTextArea = new JTextArea();
-        clientPriKeyStr = null;
-        clientPubKeyStr = null;
-        enDesKey = null;
-        serverPubKey = null;
+        ModifyButton = new JButton();
+        rsaClass = new RsaClass();
         //======== this ========
         setTitle("\u5ba2\u6237\u7aef");
         setFont(new Font("\u4eff\u5b8b", Font.PLAIN, 12));
@@ -160,6 +254,15 @@ public class ClientFrame extends JFrame {
                 scrollPane1.setViewportView(ClientTextArea);
             }
 
+            //---- ModifyButton ----
+            ModifyButton.setText("\u9a8c\u8bc1");
+            ModifyButton.setFont(ModifyButton.getFont().deriveFont(ModifyButton.getFont().getSize() + 3f));
+            ModifyButton.setBorder(UIManager.getBorder("Button.border"));
+            ModifyButton.setContentAreaFilled(false);
+            ModifyButton.addActionListener(e -> {
+			ModifyButtonActionPerformed(e);
+		});
+
             GroupLayout panel1Layout = new GroupLayout(panel1);
             panel1.setLayout(panel1Layout);
             panel1Layout.setHorizontalGroup(
@@ -170,7 +273,9 @@ public class ClientFrame extends JFrame {
                             .addGroup(panel1Layout.createSequentialGroup()
                                 .addComponent(scrollPane1, GroupLayout.PREFERRED_SIZE, 386, GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
-                                .addComponent(GenerateButton, GroupLayout.PREFERRED_SIZE, 87, GroupLayout.PREFERRED_SIZE))
+                                .addGroup(panel1Layout.createParallelGroup()
+                                    .addComponent(GenerateButton, GroupLayout.Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, 87, GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(ModifyButton, GroupLayout.Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, 87, GroupLayout.PREFERRED_SIZE)))
                             .addGroup(panel1Layout.createSequentialGroup()
                                 .addComponent(IPlabel)
                                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
@@ -179,7 +284,7 @@ public class ClientFrame extends JFrame {
                                 .addComponent(Portlabel)
                                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(PorttextField, GroupLayout.PREFERRED_SIZE, 73, GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 120, Short.MAX_VALUE)
+                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 122, Short.MAX_VALUE)
                                 .addComponent(ConnectButton, GroupLayout.PREFERRED_SIZE, 87, GroupLayout.PREFERRED_SIZE)))
                         .addGap(28, 28, 28))
             );
@@ -196,7 +301,9 @@ public class ClientFrame extends JFrame {
                         .addGroup(panel1Layout.createParallelGroup()
                             .addGroup(panel1Layout.createSequentialGroup()
                                 .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(GenerateButton))
+                                .addComponent(GenerateButton)
+                                .addGap(18, 18, 18)
+                                .addComponent(ModifyButton))
                             .addGroup(panel1Layout.createSequentialGroup()
                                 .addGap(33, 33, 33)
                                 .addComponent(scrollPane1, GroupLayout.PREFERRED_SIZE, 208, GroupLayout.PREFERRED_SIZE)))
@@ -231,6 +338,7 @@ public class ClientFrame extends JFrame {
     private JButton GenerateButton;
     private JScrollPane scrollPane1;
     private JTextArea ClientTextArea;
+    private JButton ModifyButton;
     private Client clientSocket;
     private Thread thread;
     private Socket socket;
@@ -241,5 +349,10 @@ public class ClientFrame extends JFrame {
     private String clientPriKeyStr;
     private String enDesKey;
     private PublicKey serverPubKey;
+    private byte []desStrBytes;
+    private String fileMessage;
+    private File file;
+    private String fileString;
+    private RsaClass rsaClass;
     // JFormDesigner - End of variables declaration  //GEN-END:variables
 }

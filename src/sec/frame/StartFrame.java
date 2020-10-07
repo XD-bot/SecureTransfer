@@ -38,7 +38,7 @@ public class StartFrame extends JFrame {
 
         //======== this ========
         Container contentPane = getContentPane();
-
+        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         //---- ServerButton ----
         ServerButton.setText("\u670d\u52a1\u7aef\uff08\u53d1\u9001\u6587\u4ef6\uff09");
         ServerButton.setContentAreaFilled(false);

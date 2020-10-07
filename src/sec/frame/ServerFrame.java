@@ -5,6 +5,7 @@
 package sec.frame;
 
 import sec.crypto.DesClass;
+import sec.crypto.MD5Class;
 import sec.crypto.RsaClass;
 import sec.socket.GenerateKey;
 import sec.socket.Server;
@@ -13,9 +14,14 @@ import java.awt.*;
 import java.awt.event.*;
 import java.io.*;
 import java.net.Socket;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.security.Key;
 import java.security.PrivateKey;
 import java.security.PublicKey;
+import java.util.Arrays;
 import java.util.Map;
 import javax.swing.*;
 import javax.swing.GroupLayout;
@@ -77,20 +83,53 @@ public class ServerFrame extends JFrame {
                 String serverPubKeyString = generateKey.getPublicKey();
                 serverPubKey = rsaClass.getPublicKey(serverPubKeyString);
                 serverPriKey = rsaClass.getPrivateKey(serverPriKeyString);
-                //将服务器的RSA公钥发送到Client
-                outputStream = socket.getOutputStream();
-                outputStream.write(serverPubKeyString.getBytes());
-                outputStream.write("\\|".getBytes());
-                //socket.shutdownOutput();
+
+                BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
+
+
+                bufferedWriter.write(serverPubKeyString);
+                bufferedWriter.newLine();
+                bufferedWriter.flush();
 
                 //默认DES密钥为"test1234"
                 this.ServerTextArea.append("----默认DES密钥为:test1234----\n");
-                //用客户端的RSA公钥加密DES密钥
+                //用客户端的RSA公钥加密DES密钥,将加密后的Des密钥发送到客户端
                 byte[] enDesKey = rsaClass.encrypt(DesKey.getBytes(), clientPubKey);
-                //将加密后的Des密钥发送到客户端
-                //outputStream = socket.getOutputStream();
-                outputStream.write(enDesKey);
-                outputStream.flush();
+                socket.getOutputStream().write(enDesKey);
+                socket.getOutputStream().flush();
+                System.out.println("DES：");
+                for (byte b : enDesKey) {
+                    System.out.print(b+" ");
+                }
+                System.out.println();
+                //MD5生成摘要
+                String fileMessage = MD5Class.getMD5(file);
+                System.out.println("摘要："+fileMessage.getBytes());
+                //用服务端的RSA私钥加密摘要，生成签名
+                byte[] sign = rsaClass.encrypt(fileMessage.getBytes(), serverPubKey);
+                System.out.println("签名长度"+sign.length);
+                System.out.println("签名：");
+                for (byte b : sign) {
+                    System.out.print(b+" ");
+                }
+
+                socket.getOutputStream().write(sign);
+                socket.getOutputStream().flush();
+                System.out.println("RSA公钥长度"+serverPubKeyString.length());
+                System.out.println("签名长度"+128);
+
+                //发送文件
+               FileInputStream fileInputStream = new FileInputStream(file.getPath());
+               byte[] buffer = new byte[1024];
+               int len = 0;
+               while ((len = fileInputStream.read(buffer)) != -1) {
+                    socket.getOutputStream().write(buffer,0,len);
+               }
+
+               fileInputStream.close();
+
+
+                bufferedWriter.flush();
                 socket.shutdownOutput();
 
             } catch (Exception ex) {

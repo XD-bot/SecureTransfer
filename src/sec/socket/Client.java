@@ -19,10 +19,9 @@ public class Client implements Runnable{
     String serverIp ;
     Integer serverPort ;
     Socket socket;
-    RsaClass rsaClass;
-    Map <Integer, Key> keyPair ;
-    InputStream is;
-    OutputStream os;
+    Integer flag = 0;
+
+    JTextArea jTextArea;
     public Integer getServerPort(){
         return this.serverPort;
     }
@@ -37,9 +36,12 @@ public class Client implements Runnable{
         this.serverPort = serverPort;
     }
 
+    public void setjTextArea(JTextArea jTextArea) {
+        this.jTextArea = jTextArea;
+    }
 
-    public void getClientPubKey(Socket socket){
-
+    public Integer getFlag() {
+        return flag;
     }
 
     public Socket getSocket(){
@@ -51,9 +53,18 @@ public class Client implements Runnable{
             socket = new Socket(serverIp,serverPort);
             this.serverIp = socket.getInetAddress().toString();
             this.serverPort = socket.getPort();
+
         } catch (IOException e) {
-            JOptionPane.showMessageDialog(null,"连接失败","错误",JOptionPane.ERROR_MESSAGE);
+            flag = 1;
+            SwingUtilities.invokeLater(new Runnable(){
+                public void run()
+                {
+                    JOptionPane.showMessageDialog(null, "连接错误","错误",JOptionPane.ERROR_MESSAGE);
+                }
+            });
+            Thread.currentThread().interrupt();
             e.printStackTrace();
+            return;
         }
     }
 }

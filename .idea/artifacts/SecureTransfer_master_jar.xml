@@ -1,0 +1,9 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="SecureTransfer-master:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/SecureTransfer_master_jar</output-path>
+    <root id="archive" name="SecureTransfer-master.jar">
+      <element id="module-output" name="SecureTransfer-master" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/commons-codec-1.15-bin/commons-codec-1.15/commons-codec-1.15.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>
